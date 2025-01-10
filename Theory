@@ -1,0 +1,43 @@
+Painter's Partition Problem
+The Painter's Partition Problem is a classic problem in algorithmic design that involves dividing a task into smaller sub-tasks while minimizing the maximum workload assigned to any worker. It can be solved efficiently using binary search on the answer.
+
+Problem Statement
+You are given:
+n boards with lengths given in an array arr[].k painters to paint these boards.Each painter takes the same amount of time to paint one unit of a board. A painter can paint only contiguous boards. The task is to assign boards to painters such that the maximum time taken by any painter to complete their job is minimized.
+
+Key Constraints
+A painter can only paint contiguous boards.
+Every board must be painted, and no board can be split between painters.
+Objective
+Minimize the maximum time required by a painter.
+
+Approach to Solve
+Key Insight:
+
+If the workload for each painter is minimized, the maximum time taken to paint all boards will also be minimized.
+Define the Search Space:
+
+Lower Bound (s): The length of the largest board (max(arr)), since no painter can paint less than the largest board in any valid solution.
+Upper Bound (e): The sum of all board lengths (sum(arr)), which represents the case where a single painter paints all boards.
+Binary Search on the Answer:
+
+Use binary search to find the smallest possible maximum workload.
+For a given mid-point mid in the search space:
+Check if it's possible to divide the boards among the painters such that no painter gets a workload exceeding mid.
+If possible, reduce the upper bound (e) to try for a smaller maximum workload.
+If not possible, increase the lower bound (s) to allow more workload.
+Helper Function:
+
+Simulate the partitioning of boards:
+Count the number of painters required for a given mid as the maximum workload.
+Ensure the number of painters does not exceed k.
+Result:
+
+The smallest value of mid for which partitioning is possible will be the optimal solution.
+Algorithm
+Start with the range [max(arr), sum(arr)].
+Use binary search to find the optimal maximum workload.
+For each mid-point in the range:
+Simulate the partitioning of boards using the helper function.
+Adjust the range based on whether the partitioning is feasible.
+Return the minimum valid mid.
